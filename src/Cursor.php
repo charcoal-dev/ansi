@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Charcoal\Cli\Ansi;
+namespace Charcoal\Console\Ansi;
 
 /**
  * Enumeration representing ANSI escape sequences for cursor manipulation.
