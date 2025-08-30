@@ -67,7 +67,7 @@ enum Ansi: int
      */
     public function value(): string
     {
-        return "[" . $this->value . "m";
+        return "\e[" . $this->value . "m";
     }
 
     /**

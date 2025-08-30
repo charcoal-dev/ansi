@@ -35,14 +35,6 @@ enum Cursor: string
      */
     public function value(int $mod1 = 0, int $mod2 = 0): string
     {
-        return sprintf($this->value, max(0, $mod1), max(0, $mod2));
-    }
-
-    /**
-     * @return string[]|null
-     */
-    public function aliases(): ?array
-    {
-        return null;
+        return "\e" . sprintf($this->value, max(0, $mod1), max(0, $mod2));
     }
 }
