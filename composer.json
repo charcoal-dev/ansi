@@ -25,7 +25,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Charcoal\\Tests\\Console\\Ansi\\": "tests/"
+      "Charcoal\\Console\\Tests\\Ansi\\": "tests/"
     }
   },
   "minimum-stability": "dev"
