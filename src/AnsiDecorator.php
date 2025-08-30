@@ -57,14 +57,17 @@ final class AnsiDecorator
         return preg_replace('/\{(?:([a-z]+(,?[1-9][0-9]?){0,2})|\/)+}/i', "", $input);
     }
 
-    public static function clearSeq(string $input, bool $literals = false, bool $escapes = true): string
+    /**
+     * Removes all ANSI escape codes from the input string.
+     * Including properly escaped literals.
+     */
+    public static function clearSeq(string $input, bool $literals = false, bool $codes = true): string
     {
-        // @language=RegExp
-        $literals = $literals ? '' : '\e';
+        // language=RegExp
         return preg_replace(match (true) {
-            $literals && !$escapes => '/(\\(e|x1b|033)\[[0-9;]*(m|[A-Z]))/i',
-            $literals && $escapes => '/((\e|(\\(e|x1b|033)))\[[0-9;]*(m|[A-Z]))/i',
-            default => '',
+            $literals && !$codes => '/(\\\(e|x1b|x1B|033)\[([0-9;]*(m|[A-Z])))/',
+            $literals && $codes => '/((\e|\\\(e|x1b|x1B|033))\[([0-9;]*(m|[A-Z])))/',
+            default => '/\e\[([0-9;]*(m|[A-Z]))/',
         }, "", $input);
     }
 
@@ -92,7 +95,7 @@ final class AnsiDecorator
         }
 
         $parsed = strtr($input, self::$map) . ($suffixReset ? "\e[0m" : "");
-        return !$literals ? $parsed : str_replace("\e", "\\x1b", $parsed);
+        return !$literals ? $parsed : str_replace("\e[", "\\x1b[", $parsed);
     }
 
     /**
