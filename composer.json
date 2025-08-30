@@ -1,0 +1,32 @@
+{
+  "name": "charcoal-dev/ansi",
+  "description": "Tiny PHP utility for ANSI escape sequences, providing enums and helpers for styling CLI output",
+  "type": "library",
+  "homepage": "https://github.com/charcoal-dev/cli",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Furqan A. Siddiqui",
+      "email": "hello@furqansiddiqui.com",
+      "homepage": "https://www.furqansiddiqui.com",
+      "role": "Author"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "ext-sockets": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Charcoal\\Console\\Ansi\\": [
+        "src"
+      ]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Charcoal\\Tests\\Console\\Ansi\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev"
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Part of the "charcoal-dev/ansi" package.
+  ~ @link https://github.com/charcoal-dev/ansi
+  -->
+
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true"
+         stopOnFailure="false"
+         failOnRisky="true"
+         failOnWarning="true"
+         testdox="true">
+    <testsuites>
+        <testsuite name="Charcoal Ansi Test">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
