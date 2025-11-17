@@ -27,7 +27,7 @@ enum Ansi: int
     case underline = 4;
     case blink = 5;
     case blink2 = 6;
-    case reverse = 7;
+    case invert = 7;
     case hidden = 8;
     case strike = 9;
     case underline2 = 21;
