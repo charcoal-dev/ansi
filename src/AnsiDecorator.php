@@ -28,18 +28,24 @@ final class AnsiDecorator
 
         $codes = [];
         foreach (Ansi::cases() as $case) {
-            $codes[strtolower($case->name)] = "\e[" . $case->value . "m";
+            $codes[$case->name] = "\e[" . $case->value . "m";
             foreach ($case->alias() ?? [] as $alias) {
                 $codes[strtolower($alias)] = "\e[" . $case->value . "m";
             }
         }
 
         foreach (Cursor::cases() as $case) {
-            $codes[strtolower($case->name)] = "\e" . match ($case) {
+            $codes[$case->name] = "\e" . match ($case) {
                     Cursor::goUp, Cursor::goRight, Cursor::goDown, Cursor::goLeft => $case->value(1),
                     Cursor::goTo => "",
                     default => $case->value,
                 };
+        }
+
+        for ($i = 2; $i <= 5; $i++) {
+            foreach([Cursor::goUp, Cursor::goRight, Cursor::goDown, Cursor::goLeft] as $dir) {
+                $codes[$dir->name . $i] = "\e" . $dir->value($i);
+            }
         }
 
         // Select codes
